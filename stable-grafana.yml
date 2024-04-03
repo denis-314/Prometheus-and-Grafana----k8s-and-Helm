@@ -1,0 +1,44 @@
+#
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: stable
+    meta.helm.sh/release-namespace: prometheus
+  creationTimestamp: "2024-04-02T13:43:07Z"
+  labels:
+    app.kubernetes.io/instance: stable
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/version: 10.4.0
+    helm.sh/chart: grafana-7.3.7
+  name: stable-grafana
+  namespace: prometheus
+  resourceVersion: "3741038"
+  uid: f99e70a3-a4e4-451b-a909-518011f3ac7f
+spec:
+  clusterIP: 10.101.11.122
+  clusterIPs:
+  - 10.101.11.122
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: http-web
+    nodePort: 30009
+    port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app.kubernetes.io/instance: stable
+    app.kubernetes.io/name: grafana
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
