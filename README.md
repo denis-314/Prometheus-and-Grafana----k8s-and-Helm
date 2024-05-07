@@ -52,15 +52,22 @@ DEPLOYMENT STEPS:
      Access Prometheus on port 30007 and Grafana on port 30009 in browser. The default credentials for Grafana are:
      - user: admin
      - pass: prom-operator
-    
-       Obs! In case the default credentials are not working, they can be found in the secret „stable-grafana” using the below command:
-       
-    kubectl get secret stable-grafana -oyaml -n prometheus
-    
-    echo "YWRtaW4=" | base64 --decode
-    echo "cHJvbS1vcGVyYXRvcg==" | base64 --decode
- 
 
+---
+Additional info:
+
+* Obs! In case the default credentials are not working, they can be found in the secret „stable-grafana” using the below command:
+       
+      kubectl get secret stable-grafana -oyaml -n prometheus
+    
+      echo "YWRtaW4=" | base64 --decode
+      echo "cHJvbS1vcGVyYXRvcg==" | base64 --decode
+ 
+* It can be checked if the ingress information was passed to the Grafana pod by executing inside the container and checking the Grafana initial configuration file:
+
+      k exec -it stable-grafana-54d9f9d99f-skslj -n prometheus -- /bin/bash
+      cd /etc/grafana
+      vi grafana.ini
 
 ---
 Bibliografy: https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
