@@ -17,18 +17,25 @@ DEPLOYMENT STEPS:
      
     kubectl create namespace prometheus
 
+  3. Download the dafault values.yaml file from https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+     The default file can be seen also with the below command, but it cannot be copied if there are too many lines
+
+    helm show values prometheus-community/kube-prometheus-stack
+
+  4. Edit the content of the default values.yaml and add the Ingress path and domain, based on section "How to serve Grafana with a path prefix (/grafana)" from the official documentation https://github.com/grafana/helm-charts/tree/main/charts/grafana. The complete modified values.yaml file is attached here.
+
   3. Install Prometheus and Grafana using teh Helm charts
 
     helm install stable prometheus-community/kube-prometheus-stack -n prometheus
 
-  4. Edit the services to change the default service type to NodePort, and change the default ports, according to the yaml files from this repo:
+  4. (! Optional - for access via NodePort. Skip for access via LoadBalancer & Ingress !) Edit the services to change the default service type to NodePort, and change the default ports, according to the yaml files from this repo:
      - stable-kube-prometheus-sta-prometheus.yml
      - stable-grafana.yml
 
     kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus
     kubectl edit svc stable-grafana -n prometheus
 
-  5. Access Prometheus on port 30007 and Grafana on port 30009 in browser. The default credentials for Grafana are:
+  5. (! Optional - for access via NodePort. Skip for access via LoadBalancer & Ingress !) Access Prometheus on port 30007 and Grafana on port 30009 in browser. The default credentials for Grafana are:
      - user: admin
      - pass: prom-operator
     
@@ -39,6 +46,7 @@ DEPLOYMENT STEPS:
     echo "YWRtaW4=" | base64 --decode
     echo "cHJvbS1vcGVyYXRvcg==" | base64 --decode
 
+   6. 
 
 
 ---
