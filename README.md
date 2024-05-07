@@ -40,7 +40,7 @@ DEPLOYMENT STEPS:
 
     helm install stable prometheus-community/kube-prometheus-stack -n prometheus --values=values.yaml
 
-  7. (! Optional - for access via NodePort. Skip for access via LoadBalancer & Ingress !)
+  7. (! Optional - for access via NodePort. Skip for access via LoadBalancer & Ingress !):
      Edit the services to change the default service type to NodePort, and change the default ports, according to the yaml files from this repo:
      - stable-kube-prometheus-sta-prometheus.yml
      - stable-grafana.yml
@@ -48,7 +48,7 @@ DEPLOYMENT STEPS:
     kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus
     kubectl edit svc stable-grafana -n prometheus
 
-  8. (! Optional - for access via NodePort. Skip for access via LoadBalancer & Ingress !)
+  8. (! Optional - for access via NodePort. Skip for access via LoadBalancer & Ingress !):
      Access Prometheus on port 30007 and Grafana on port 30009 in browser. The default credentials for Grafana are:
      - user: admin
      - pass: prom-operator
