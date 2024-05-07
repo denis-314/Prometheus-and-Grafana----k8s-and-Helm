@@ -38,3 +38,8 @@ DEPLOYMENT STEPS:
     
     echo "YWRtaW4=" | base64 --decode
     echo "cHJvbS1vcGVyYXRvcg==" | base64 --decode
+
+
+
+---
+Bibliografy: https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
