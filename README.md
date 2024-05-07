@@ -32,11 +32,11 @@ DEPLOYMENT STEPS:
      
   6. Install Prometheus and Grafana using teh Helm charts:
      
- With the Grafana Service exposed over NodePort:
+ Option 1: With the Grafana Service exposed over NodePort:
      
       helm install stable prometheus-community/kube-prometheus-stack -n prometheus
   
- With the Grafana Service exposed over LoadBalancer & Ingress. Run the command from the same directory where values.yaml is located
+ Option 2: With the Grafana Service exposed over LoadBalancer & Ingress. Run the command from the same directory where values.yaml is located
 
     helm install stable prometheus-community/kube-prometheus-stack -n prometheus --values=values.yaml
 
