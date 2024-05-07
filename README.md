@@ -28,12 +28,17 @@ DEPLOYMENT STEPS:
     W0507 15:00:23.905092 2862610 warnings.go:70] annotation "kubernetes.io/ingress.class" is deprecated, please use 'spec.ingressClassName' instead
     W0507 15:00:23.905160 2862610 warnings.go:70] path /grafana/?(.*) cannot be used with pathType Prefix
 
-
+  5. Copy the values.yaml file locally.
+     
   3. Install Prometheus and Grafana using teh Helm charts
-
+With the Grafana Service exposed over NodePort:
+     
     helm install stable prometheus-community/kube-prometheus-stack -n prometheus
+With the Grafana Service exposed over LoadBalancer & Ingress. Run the command from the same directory where values.yaml is located
 
-  4. (! Optional - for access via NodePort. Skip for access via LoadBalancer & Ingress !) Edit the services to change the default service type to NodePort, and change the default ports, according to the yaml files from this repo:
+    helm install stable prometheus-community/kube-prometheus-stack -n prometheus --values=values.yaml
+
+  5. (! Optional - for access via NodePort. Skip for access via LoadBalancer & Ingress !) Edit the services to change the default service type to NodePort, and change the default ports, according to the yaml files from this repo:
      - stable-kube-prometheus-sta-prometheus.yml
      - stable-grafana.yml
 
