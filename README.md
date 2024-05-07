@@ -30,22 +30,24 @@ DEPLOYMENT STEPS:
 
   5. Copy the values.yaml file locally.
      
-  3. Install Prometheus and Grafana using teh Helm charts
-With the Grafana Service exposed over NodePort:
+  6. Install Prometheus and Grafana using teh Helm charts:
      
-    helm install stable prometheus-community/kube-prometheus-stack -n prometheus
-With the Grafana Service exposed over LoadBalancer & Ingress. Run the command from the same directory where values.yaml is located
+ With the Grafana Service exposed over NodePort:
+     
+      helm install stable prometheus-community/kube-prometheus-stack -n prometheus
+  
+ With the Grafana Service exposed over LoadBalancer & Ingress. Run the command from the same directory where values.yaml is located
 
     helm install stable prometheus-community/kube-prometheus-stack -n prometheus --values=values.yaml
 
-  5. (! Optional - for access via NodePort. Skip for access via LoadBalancer & Ingress !) Edit the services to change the default service type to NodePort, and change the default ports, according to the yaml files from this repo:
+  7. (! Optional - for access via NodePort. Skip for access via LoadBalancer & Ingress !) Edit the services to change the default service type to NodePort, and change the default ports, according to the yaml files from this repo:
      - stable-kube-prometheus-sta-prometheus.yml
      - stable-grafana.yml
 
     kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus
     kubectl edit svc stable-grafana -n prometheus
 
-  5. (! Optional - for access via NodePort. Skip for access via LoadBalancer & Ingress !) Access Prometheus on port 30007 and Grafana on port 30009 in browser. The default credentials for Grafana are:
+  8. (! Optional - for access via NodePort. Skip for access via LoadBalancer & Ingress !) Access Prometheus on port 30007 and Grafana on port 30009 in browser. The default credentials for Grafana are:
      - user: admin
      - pass: prom-operator
     
@@ -55,8 +57,7 @@ With the Grafana Service exposed over LoadBalancer & Ingress. Run the command fr
     
     echo "YWRtaW4=" | base64 --decode
     echo "cHJvbS1vcGVyYXRvcg==" | base64 --decode
-
-   6. 
+ 
 
 
 ---
