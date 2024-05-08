@@ -138,8 +138,10 @@ DEPLOYMENT STEPS:
 
        helm show values prometheus-community/kube-prometheus-stack
 
-   3.4 Edit the content of the default values.yaml and add the Ingress path and domain, based on section "How to serve Grafana with a path prefix (/grafana)" from the official documentation https://github.com/grafana/helm-charts/tree/main/charts/grafana. The complete modified values.yaml file is attached here (lines 979 - 992).
-     Obs ! Can be modified for testing reason, because the following warnings were received:
+   3.4 Ingress for Grafana
+ - Edit the content of the default values.yaml and add the Ingress path and domain, based on section "How to serve Grafana with a path prefix (/grafana)" from the official documentation https://github.com/grafana/helm-charts/tree/main/charts/grafana.
+ - The complete modified values.yaml file is attached here (lines 979 - 992)
+ - Obs ! Can be modified for testing reason, because the following warnings were received:
 
     W0507 15:00:23.905092 2862610 warnings.go:70] annotation "kubernetes.io/ingress.class" is deprecated, please use 'spec.ingressClassName' instead
     W0507 15:00:23.905160 2862610 warnings.go:70] path /grafana/?(.*) cannot be used with pathType Prefix
@@ -154,7 +156,10 @@ DEPLOYMENT STEPS:
   
    Option 2: With the Grafana Service exposed over LoadBalancer & Ingress. Run the command from the same directory where values.yaml is located
 
-       helm install stable prometheus-community/kube-prometheus-stack -n prometheus --values=values.yaml
+    - Accedd the Grafana web UI on http://<domain>/grafana
+
+          helm install stable prometheus-community/kube-prometheus-stack -n prometheus --values=values.yaml
+          #or helm upgrade stable prometheus-community/kube-prometheus-stack -n prometheus --values=values.yaml
 
    3.7 (! Optional - for access via NodePort. Skip for access via LoadBalancer & Ingress !):
      Edit the services to change the default service type to NodePort, and change the default ports, according to the yaml files from this repo:
@@ -170,7 +175,54 @@ DEPLOYMENT STEPS:
      - pass: prom-operator
 
 ---
-Additional info:
+**INGRESS FOR PROMETHEUS**
+
+4. Configure ingress rule for prometheus based on https://github.com/kubernetes/ingress-nginx/issues/6140
+
+   4.1 Add an external URL in the Prometheus object
+   
+ - Show the objects in Prometheus Class
+ - edit the prometheus object
+ - add „externalUrl” and „routePrefix”, or just copy the content from „prometheus_object.yaml” file
+
+       k get prometheus -n prometheus
+       k edit prometheus stable-kube-prometheus-sta-prometheus -n prometheus
+
+   4.2 Create a manifest file for ingress service and apply it:
+
+ - Create the manifest file
+ - paste the content from „ingress_prometheus.yaml” attached here
+ - Apply the manifest file
+ - Accedd the Prometheus web UI on http://<domain>/prometheus
+ 
+       vi ingress_prometheus.yaml
+
+       ---
+       apiVersion: networking.k8s.io/v1
+       kind: Ingress
+       metadata:
+         name: prometheus-ingress
+         namespace: prometheus
+       spec:
+         ingressClassName: nginx
+         rules:
+           - host: kube.eta2u.demo
+             http:
+               paths:
+                 - path: /prometheus(/|$)(.*)
+                   pathType: Prefix
+                   backend:
+                     service:
+                       name: stable-kube-prometheus-sta-prometheus
+                       port:
+                         number: 9090
+       ---
+
+       k apply -f ingress_prometheus.yaml
+       k get ingress -n prometheus
+   
+---
+**Additional info:**
 
 * Obs! In case the default credentials are not working, they can be found in the secret „stable-grafana” using the below command:
        
@@ -186,6 +238,7 @@ Additional info:
       vi grafana.ini
 
 ---
-Bibliografy: 
+**Bibliografy: **
 - https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
 - https://www.youtube.com/watch?v=k8bxtsWe9qw
+- https://github.com/kubernetes/ingress-nginx/issues/6140
