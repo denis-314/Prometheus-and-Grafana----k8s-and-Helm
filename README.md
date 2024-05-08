@@ -133,7 +133,7 @@ DEPLOYMENT STEPS:
        kubectl create namespace prometheus
 
    3.3 Download the dafault values.yaml file from https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
-     The default file can be seen also with the below command, but it cannot be copied if there are too many lines
+     The default file can be seen also with the below command, but it cannot be copied if there are too many lines. I have attached it here.
 
        helm show values prometheus-community/kube-prometheus-stack
 
@@ -185,5 +185,6 @@ Additional info:
       vi grafana.ini
 
 ---
-Bibliografy: https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
-             https://www.youtube.com/watch?v=k8bxtsWe9qw
+Bibliografy: 
+- https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+- https://www.youtube.com/watch?v=k8bxtsWe9qw
