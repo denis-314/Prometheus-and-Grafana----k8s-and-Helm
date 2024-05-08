@@ -159,7 +159,8 @@ DEPLOYMENT STEPS:
     - Accedd the Grafana web UI on http://domain/grafana
 
           helm install stable prometheus-community/kube-prometheus-stack -n prometheus --values=values.yaml
-          #or helm upgrade stable prometheus-community/kube-prometheus-stack -n prometheus --values=values.yaml
+          #or
+          helm upgrade stable prometheus-community/kube-prometheus-stack -n prometheus --values=values.yaml
 
    3.7 (! Optional - for access via NodePort. Skip for access via LoadBalancer & Ingress !):
      Edit the services to change the default service type to NodePort, and change the default ports, according to the yaml files from this repo:
