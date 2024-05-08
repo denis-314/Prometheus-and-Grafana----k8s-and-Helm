@@ -183,7 +183,7 @@ DEPLOYMENT STEPS:
    
  - Show the objects in Prometheus Class
  - edit the prometheus object
- - add „externalUrl” and „routePrefix”, or just copy the content from „prometheus_object.yaml” file
+ - add „externalUrl” and „routePrefix” from lines 36 and 54, or just copy the content from „prometheus_object.yaml” file
 
        k get prometheus -n prometheus
        k edit prometheus stable-kube-prometheus-sta-prometheus -n prometheus
