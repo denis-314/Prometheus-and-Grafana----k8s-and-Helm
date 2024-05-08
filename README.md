@@ -9,7 +9,7 @@ PREREQUISITES:
 DEPLOYMENT STEPS:
 
 ---
-**METALLB**
+**I METALLB**
 1. Install Metallb as Load Balancer: https://www.youtube.com/watch?v=k8bxtsWe9qw
    
    1.1 Use Netplan to add additional IP addresses to the Network Adapter of the Master kubernetes node
@@ -108,7 +108,7 @@ DEPLOYMENT STEPS:
        kubectl get l2advertisement -n metallb-system
 
 ---
-**INGRESS SERVICE**
+**II INGRESS SERVICE**
 
 2. Install NGINX as Ingress Controller:
 
@@ -120,7 +120,7 @@ DEPLOYMENT STEPS:
        kubectl get all -n ingress-nginx
 
 ---
-**PROMETHEUS & GRAFANA**
+**III PROMETHEUS & GRAFANA**
 
 3. Install Prometheus & Grafana
 
@@ -172,7 +172,7 @@ DEPLOYMENT STEPS:
      - pass: prom-operator
 
 ---
-**INGRESS FOR PROMETHEUS**
+**IV INGRESS FOR PROMETHEUS**
 
 4. Configure ingress rule for prometheus based on https://github.com/kubernetes/ingress-nginx/issues/6140
 
@@ -219,7 +219,7 @@ DEPLOYMENT STEPS:
        k get ingress -n prometheus
 
 ---
-**INGRESS FOR GRAFANA**
+**V INGRESS FOR GRAFANA**
 
 5. Update the previously created ingress rule for Grafana based on the "ingress_grafana.yaml" attached here
 
@@ -233,7 +233,7 @@ DEPLOYMENT STEPS:
        k edit ingress stable-grafana -n prometheus
 
 ---
-**Additional info:**
+**VI Additional info:**
 
 * Obs! In case the default credentials are not working, they can be found in the secret „stable-grafana” using the below command:
        
