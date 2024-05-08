@@ -141,10 +141,6 @@ DEPLOYMENT STEPS:
    3.4 Ingress for Grafana
  - Edit the content of the default values.yaml and add the Ingress path and domain, based on section "How to serve Grafana with a path prefix (/grafana)" from the official documentation https://github.com/grafana/helm-charts/tree/main/charts/grafana.
  - The complete modified values.yaml file is attached here (lines 979 - 992)
- - Obs ! Can be modified for testing reason, because the following warnings were received:
-
-    W0507 15:00:23.905092 2862610 warnings.go:70] annotation "kubernetes.io/ingress.class" is deprecated, please use 'spec.ingressClassName' instead
-    W0507 15:00:23.905160 2862610 warnings.go:70] path /grafana/?(.*) cannot be used with pathType Prefix
 
    3.5 Copy the values.yaml file locally.
      
