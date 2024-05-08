@@ -12,6 +12,7 @@ DEPLOYMENT STEPS:
 1. Install Metallb as Load Balancer: https://www.youtube.com/watch?v=k8bxtsWe9qw
    
    1.1 Use Netplan to add additional IP addresses to the Network Adapter of the Master kubernetes node
+   
    1.2 Edit the kube-proxy Config Map in the kube-system namespace in order to enable strict ARP.
        Change data.config.conf.ipvs.strictARP from „false” to „true” 
 
