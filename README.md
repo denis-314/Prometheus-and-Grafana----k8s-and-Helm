@@ -233,7 +233,7 @@ DEPLOYMENT STEPS:
        k edit ingress stable-grafana -n prometheus
 
 ---
-**VI. Additional info:**
+**VI. ADD INFRLUXDB DATA SOURCE IN GRAFANA**
 
 6. Add new InfluxDB Data Source in Grafana: https://www.youtube.com/watch?v=Jszd7zrl-_U
 
