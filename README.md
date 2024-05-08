@@ -112,11 +112,11 @@ DEPLOYMENT STEPS:
 2. Install NGINX as Ingress Controller:
 
    2.1 Install Nginx
-   - apply the manifest file
-   - check if the deployment was successfull and if the Ingress Controller Service has picked up an external IP
-   
-    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
-    kubectl get all -n ingress-nginx
+ - apply the manifest file
+ - check if the deployment was successfull and if the Ingress Controller Service has picked up an external IP
+
+       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
+       kubectl get all -n ingress-nginx
 
 
 --PROMETHEUS & GRAFANA--
@@ -125,17 +125,17 @@ DEPLOYMENT STEPS:
 
    3.1 Add the helm official repository for Prometheus and Grafana 
 
-    helm repo add stable https://charts.helm.sh/stable
-    helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+       helm repo add stable https://charts.helm.sh/stable
+       helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
     
    3.2 Create namespace
      
-    kubectl create namespace prometheus
+       kubectl create namespace prometheus
 
    3.3 Download the dafault values.yaml file from https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
      The default file can be seen also with the below command, but it cannot be copied if there are too many lines
 
-    helm show values prometheus-community/kube-prometheus-stack
+       helm show values prometheus-community/kube-prometheus-stack
 
    3.4 Edit the content of the default values.yaml and add the Ingress path and domain, based on section "How to serve Grafana with a path prefix (/grafana)" from the official documentation https://github.com/grafana/helm-charts/tree/main/charts/grafana. The complete modified values.yaml file is attached here (lines 979 - 992).
      Obs ! Can be modified for testing reason, because the following warnings were received:
@@ -149,11 +149,11 @@ DEPLOYMENT STEPS:
      
    Option 1: With the Grafana Service exposed over NodePort:
      
-      helm install stable prometheus-community/kube-prometheus-stack -n prometheus
+       helm install stable prometheus-community/kube-prometheus-stack -n prometheus
   
    Option 2: With the Grafana Service exposed over LoadBalancer & Ingress. Run the command from the same directory where values.yaml is located
 
-    helm install stable prometheus-community/kube-prometheus-stack -n prometheus --values=values.yaml
+       helm install stable prometheus-community/kube-prometheus-stack -n prometheus --values=values.yaml
 
    3.7 (! Optional - for access via NodePort. Skip for access via LoadBalancer & Ingress !):
      Edit the services to change the default service type to NodePort, and change the default ports, according to the yaml files from this repo:
