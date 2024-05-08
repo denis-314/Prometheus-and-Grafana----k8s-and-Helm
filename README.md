@@ -12,11 +12,12 @@ DEPLOYMENT STEPS:
 1. Install Metallb as Load Balancer: https://www.youtube.com/watch?v=k8bxtsWe9qw
    
    1.1 Use Netplan to add additional IP addresses to the Network Adapter of the Master kubernetes node
-       - Change directory to netplan location
-       - create a config file 01_config.yaml
-       - fill in the configuration to add additional IP addressess on the specified network adapder
-       - apply the netplan
-       - check if the IP addresses have been added
+   
+ - Change directory to netplan location
+ - create a config file 01_config.yaml
+ - fill in the configuration to add additional IP addressess on the specified network adapder
+ - apply the netplan
+ - check if the IP addresses have been added
 
        cd /etc/netplan
        vi 01_config.yaml
