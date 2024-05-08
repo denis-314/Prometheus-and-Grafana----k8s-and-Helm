@@ -8,7 +8,7 @@ PREREQUISITES:
 
 DEPLOYMENT STEPS:
 
---METALLB--
+-------------------------METALLB-------------------------
 1. Install Metallb as Load Balancer: https://www.youtube.com/watch?v=k8bxtsWe9qw
    
    1.1 Use Netplan to add additional IP addresses to the Network Adapter of the Master kubernetes node
@@ -107,7 +107,7 @@ DEPLOYMENT STEPS:
        kubectl get l2advertisement -n metallb-system
 
 
---INGRESS SERVICE--
+-------------------------INGRESS SERVICE-------------------------
 
 2. Install NGINX as Ingress Controller:
 
@@ -119,7 +119,7 @@ DEPLOYMENT STEPS:
        kubectl get all -n ingress-nginx
 
 
---PROMETHEUS & GRAFANA--
+-------------------------PROMETHEUS & GRAFANA-------------------------
 
 3. Install Prometheus & Grafana
 
