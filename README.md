@@ -106,7 +106,7 @@ DEPLOYMENT STEPS:
        kubectl apply -f l2-advertisement.yaml
        kubectl get l2advertisement -n metallb-system
 
-
+---
 -------------------------INGRESS SERVICE-------------------------
 
 2. Install NGINX as Ingress Controller:
@@ -118,7 +118,7 @@ DEPLOYMENT STEPS:
        kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
        kubectl get all -n ingress-nginx
 
-
+---
 -------------------------PROMETHEUS & GRAFANA-------------------------
 
 3. Install Prometheus & Grafana
