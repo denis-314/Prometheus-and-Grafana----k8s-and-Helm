@@ -219,7 +219,7 @@ DEPLOYMENT STEPS:
        k get ingress -n prometheus
 
 ---
-**INGRESS FOR Grafana**
+**INGRESS FOR GRAFANA**
 
 5. Update the previously created ingress rule for Grafana based on the "ingress_grafana.yaml" attached here
 
