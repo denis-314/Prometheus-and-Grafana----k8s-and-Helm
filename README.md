@@ -156,7 +156,7 @@ DEPLOYMENT STEPS:
   
    Option 2: With the Grafana Service exposed over LoadBalancer & Ingress. Run the command from the same directory where values.yaml is located
 
-    - Accedd the Grafana web UI on http://<domain>/grafana
+    - Accedd the Grafana web UI on http://domain/grafana
 
           helm install stable prometheus-community/kube-prometheus-stack -n prometheus --values=values.yaml
           #or helm upgrade stable prometheus-community/kube-prometheus-stack -n prometheus --values=values.yaml
@@ -193,7 +193,7 @@ DEPLOYMENT STEPS:
  - Create the manifest file
  - paste the content from „ingress_prometheus.yaml” attached here
  - Apply the manifest file
- - Accedd the Prometheus web UI on http://<domain>/prometheus
+ - Accedd the Prometheus web UI on http://domain/prometheus
  
        vi ingress_prometheus.yaml
 
