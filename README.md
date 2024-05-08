@@ -217,7 +217,21 @@ DEPLOYMENT STEPS:
 
        k apply -f ingress_prometheus.yaml
        k get ingress -n prometheus
+
+---
+**INGRESS FOR Grafana**
+
+5. Update the previously created ingress rule for Grafana based on the "ingress_grafana.yaml" attached here
+
+   5.1 Edit the stable-grafana ingress object
    
+ - Show all the ingress objects
+ - edit the stable-grafana object
+ - add port number at line 36
+
+       k get ingress -n prometheus
+       k edit ingress stable-grafana -n prometheus
+
 ---
 **Additional info:**
 
