@@ -41,22 +41,25 @@ DEPLOYMENT STEPS:
        ip addr show ens160
    
    1.2 Edit the kube-proxy Config Map in the kube-system namespace in order to enable strict ARP.
-       Change data.config.conf.ipvs.strictARP from „false” to „true” 
+
+ - Change data.config.conf.ipvs.strictARP from „false” to „true” 
 
        kubectl edit configmap -n kube-system kube-proxy
 
    1.3 Install Metallb
-       - check if the deployment was successfull
+
+ - check if the deployment was successfull
 
        kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.5/config/manifests/metallb-native.yaml
        k get all -n metallb-system
 
    1.4 Create an IPAddressPool object:
-       - Create a directory to store the metallb manifest files
-       - Create the IPAddressPool yaml file
-       - specify the range of external IPs which was previously defined on the Network interface
-       - apply the manifest file
-       - check if the IPAddressPool was created
+   
+ - Create a directory to store the metallb manifest files
+ - Create the IPAddressPool yaml file
+ - specify the range of external IPs which was previously defined on the Network interface
+ - apply the manifest file
+ - check if the IPAddressPool was created
 
        mkdir metallb-files
        cd metallb-files
@@ -77,10 +80,11 @@ DEPLOYMENT STEPS:
        kubectl get IPAddressPool -n metallb-system
 
    1.5 Create an L2Advertisement object:
-       - Create the L2Advertisement yaml file
-       - Specify the IP Address Pool advertised
-       - apply the manifest file
-       - check if the L2Advertisement was created
+   
+ - Create the L2Advertisement yaml file
+ - Specify the IP Address Pool advertised
+ - apply the manifest file
+ - check if the L2Advertisement was created
 
        vi l2-advertisement.yaml
 
@@ -100,15 +104,17 @@ DEPLOYMENT STEPS:
 
 --INGRESS SERVICE--
 2. Install NGINX as Ingress Controller:
+
    2.1 Install Nginx
-       - apply the manifest file
-       - check if the deployment was successfull and if the Ingress Controller Service has picked up an external IP
+   - apply the manifest file
+   - check if the deployment was successfull and if the Ingress Controller Service has picked up an external IP
    
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
     kubectl get all -n ingress-nginx
 
 --PROMETHEUS & GRAFANA--
 3. Install Prometheus & Grafana
+
    3.1 Add the helm official repository for Prometheus and Grafana 
 
     helm repo add stable https://charts.helm.sh/stable
