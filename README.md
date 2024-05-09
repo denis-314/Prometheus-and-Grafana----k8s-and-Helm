@@ -254,6 +254,12 @@ DEPLOYMENT STEPS:
       cd /etc/grafana
       vi grafana.ini
 
+* For vSphere Dashboards go to: https://grafana.com/grafana/dashboards/8159-vmware-vsphere-overview/
+     - VMware vSphere - Overview -> ID 8159
+     - VMware vSphere - VMs -> ID 8168
+     - VMware vSphere - Hosts -> ID 8165
+     - VMware vSphere - Datastore -> ID 8162
+
 ---
 **Bibliografy: **
 - https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
